@@ -3,8 +3,8 @@ import "./App.css";
 import AboutMe from "./components/AboutMe";
 import Services from "./components/Services";
 import MySkills from "./components/MySkills";
-import Work from "./views/Work";
-import Contact from "./views/Contact";
+import Work from "./views/work";
+import Contact from "./views/contact";
 import Header from "./components/Header";
 
 function App() {
