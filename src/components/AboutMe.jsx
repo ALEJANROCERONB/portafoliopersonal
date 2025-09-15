@@ -40,7 +40,7 @@ export default function AboutMe() {
       <img
         src={aboutme}
         alt="aboutme"
-        style={{ width: "100vw", display: "block", margin: "0 auto" }}
+        style={{ width: "30vw", display: "block", margin: "0 auto" }}
       />
 
       {/* Contenedor horizontal */}
