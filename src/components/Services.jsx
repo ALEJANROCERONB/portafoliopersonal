@@ -78,7 +78,7 @@ export default function Services() {
       <img
         src={services}
         alt="Services"
-        style={{ width: "100vw", display: "block", margin: "0 auto" }}
+        style={{ width: "80vw", display: "block", margin: "0 auto" }}
       />
 
       <div

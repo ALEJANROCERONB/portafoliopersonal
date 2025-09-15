@@ -59,7 +59,7 @@ export default function MySkills() {
       <img
         src={skills}
         alt="My skills"
-        style={{ width: "100vw", marginBottom: "2rem" }}
+        style={{ width: "80vw", marginBottom: "2rem" }}
       />
 
       <div
