@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import aboutme from "../assets/aboutme.png";
-import pic from "../assets/pic.png";
+import pic from "../assets/pic.png"; // ✅ úsala en <img> y como bg
 import "../styles/AboutMe.css";
 
 export default function AboutMe() {
@@ -9,21 +9,17 @@ export default function AboutMe() {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
+      entries => {
+        entries.forEach(entry => {
           if (entry.isIntersecting) {
             setIsVisible(true);
-            observer.unobserve(entry.target); // Solo una vez
+            observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.2 } // 20% visible para activarse
+      { threshold: 0.2 }
     );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
@@ -31,46 +27,22 @@ export default function AboutMe() {
     <div
       ref={sectionRef}
       className={`aboutme-section ${isVisible ? "show" : ""}`}
-      style={{
-        background: "#06141b",
-        padding: "20px 0",
-      }}
     >
-      {/* Título o banner superior */}
+      {/* Banner */}
       <img
         src={aboutme}
         alt="aboutme"
         style={{ width: "30vw", display: "block", margin: "0 auto" }}
       />
 
-      {/* Contenedor horizontal */}
+      {/* Contenedor */}
       <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "flex-start",
-          gap: "20px",
-          padding: "20px",
-          maxWidth: "1000px",
-          margin: "0 auto",
-          backgroundColor: "#06141b",
-        }}
+        className="aboutme-container"
+        /* Pasamos la ruta de la imagen al CSS */
+        style={{ "--aboutme-bg": `url(${pic})` }}
       >
-        {/* Descripción */}
-        <div
-          style={{
-            flex: 1,
-            color: "white",
-            fontFamily: "Arial, sans-serif",
-          }}
-        >
-          <p
-            style={{
-              lineHeight: "1.4",
-              fontSize: "1rem",
-              margin: 0,
-            }}
-          >
+        <div className="aboutme-text">
+          <p style={{ lineHeight: "1.4", fontSize: "1rem", margin: 0 }}>
             I'm a passionate developer with experience in React, React Native,
             and Laravel. I have solid knowledge in APIs and enjoy building
             intuitive and efficient applications across web and mobile
@@ -86,19 +58,9 @@ export default function AboutMe() {
           </p>
         </div>
 
-        {/* Imagen lateral */}
-        <img
-          src={pic}
-          alt="Developer"
-          style={{
-            width: "150px",
-            height: "auto",
-            borderRadius: "10px",
-            objectFit: "cover",
-          }}
-        />
+        {/* Imagen lateral en desktop */}
+        <img src={pic} alt="Developer" className="aboutme-pic" />
       </div>
     </div>
   );
 }
-

@@ -8,3 +8,73 @@
   opacity: 1;
   transform: translateY(0);
 }
+.aboutme-section {
+  background: #06141b;
+  padding: 20px 0;
+}
+
+.aboutme-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #06141b;
+  position: relative; /* necesario para ::before/::after en mobile */
+}
+
+.aboutme-text {
+  flex: 1;
+  color: #fff; /* texto blanco */
+  font-family: Arial, sans-serif;
+  position: relative;
+  z-index: 2; /* por encima del fondo */
+}
+
+.aboutme-pic {
+  width: 150px;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* --- Móviles: poner la imagen detrás del texto, del mismo tamaño o más grande --- */
+@media (max-width: 768px) {
+  .aboutme-container {
+    flex-direction: column;
+    text-align: center;
+    padding: 24px;
+  }
+
+  /* Imagen de fondo detrás del texto. La ruta viene desde la CSS var */
+  .aboutme-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--aboutme-bg) center/cover no-repeat;
+    z-index: 1;
+  }
+
+  /* Opcional: ligero velo para que el blanco sobre blanco no pierda legibilidad */
+  .aboutme-container::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(6, 20, 27, 0.25); /* velo muy sutil */
+    z-index: 1;
+  }
+
+  .aboutme-text {
+    z-index: 2;
+    padding: 20px;
+    /* Opcional extra de legibilidad sobre fondos claros */
+    text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+  }
+
+  /* Oculta la imagen lateral en móviles (ya está como fondo) */
+  .aboutme-pic {
+    display: none;
+  }
+}

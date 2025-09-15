@@ -48,23 +48,29 @@
 
 /* ====== Typography entrance ====== */
 .hero-title {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: clamp(2rem, 6vw, 4rem);
-  letter-spacing: .08em;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  letter-spacing: 0.03em;         /* menos espacio para un look elegante */
+  font-weight: 700;
   margin: 0 0 .4rem;
   opacity: 0;
   transform: translateY(14px) scale(.98);
   filter: blur(6px);
   transition: opacity .8s ease, transform .8s ease, filter .8s ease;
 }
+
 .hero-subtitle {
+  font-family: 'Lato', sans-serif;
   color: #C2A072;
+  font-weight: 400;
   font-size: clamp(1rem, 2.2vw, 1.25rem);
+  letter-spacing: 0.02em;
   margin: 0 0 1.2rem;
   opacity: 0;
   transform: translateY(8px);
   transition: opacity .9s ease .12s, transform .9s ease .12s;
 }
+
 
 .hero-header.is-loaded .hero-title {
   opacity: 1;
@@ -161,3 +167,42 @@
   .hero-subtitle,
   .hero-cta { animation: none!important; transition: none!important; }
 }
+
+/* Contenedor flex: logo + bloque de texto */
+.title-with-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;         /* espacio entre logo y texto */
+  margin-top: 1rem;  /* separación desde el tope del overlay */
+  text-align: left;  /* evita que el texto se centre individualmente */
+}
+
+/* Bloque que envuelve el h1 y el p */
+.title-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Logo redondo */
+.logo-round {
+  width: 80px;         /* ajusta el tamaño */
+  height: 80px;
+  border-radius: 50%;  /* hace el logo circular */
+  object-fit: cover;
+  background: #fff;    /* por si el svg tiene transparencia */
+  padding: 4px;        /* pequeño margen interior opcional */
+}
+
+/* Ajuste responsive opcional */
+@media (max-width: 600px) {
+  .logo-round {
+    width: 60px;
+    height: 60px;
+  }
+  .title-with-logo {
+    gap: 0.75rem;
+  }
+}
+
