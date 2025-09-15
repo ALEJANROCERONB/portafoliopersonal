@@ -1,0 +1,32 @@
+/* Fondo oscuro en todo momento para evitar "flash" blanco */
+.services-section,
+.service-row,
+.service-row * {
+  background-color: transparent;
+}
+
+/* Estado inicial: sin cambiar colores, solo opacidad y leve translate.
+   Al ser el contenedor padre #06141b, no verás blanco al fadear. */
+.service-row {
+  opacity: 0;
+  transform: translateY(42px);
+  will-change: opacity, transform;
+  transition:
+    opacity 0.7s ease-out var(--delay, 0ms),
+    transform 0.7s ease-out var(--delay, 0ms);
+}
+
+/* Al mostrarse: fade + slide-up */
+.service-row.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Respeto a usuarios con reducción de movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .service-row {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

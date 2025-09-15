@@ -1,0 +1,163 @@
+/* ====== Base ====== */
+.hero-header {
+  --parallax-x: 0px;
+  --parallax-y: 0px;
+
+  width: 100%;
+  height: min(40vh, 760px);
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  user-select: none;
+
+  /* Ken Burns background (slow pan + scale) */
+  background-image: url("/images/background.jpg");
+  background-size: 110% 110%;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: translateZ(0);
+  color: #fff;
+}
+
+/* Start paused until .is-loaded adds */
+.hero-header {
+  animation: kb-pan 18s ease-in-out infinite alternate paused;
+}
+.hero-header.is-loaded { animation-play-state: running; }
+
+@keyframes kb-pan {
+  0%   { background-position: 46% 50%; background-size: 110%; }
+  100% { background-position: 54% 48%; background-size: 116%; }
+}
+
+/* .overlay {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at 50% 30%, rgba(0,0,0,.35), rgba(0,0,0,.65));
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: #fff;
+  padding: 0 20px;
+
+  transform: translate(var(--parallax-x), var(--parallax-y));
+  transition: transform .12s ease-out;
+} */
+
+/* ====== Typography entrance ====== */
+.hero-title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(2rem, 6vw, 4rem);
+  letter-spacing: .08em;
+  margin: 0 0 .4rem;
+  opacity: 0;
+  transform: translateY(14px) scale(.98);
+  filter: blur(6px);
+  transition: opacity .8s ease, transform .8s ease, filter .8s ease;
+}
+.hero-subtitle {
+  color: #C2A072;
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  margin: 0 0 1.2rem;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .9s ease .12s, transform .9s ease .12s;
+}
+
+.hero-header.is-loaded .hero-title {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+.hero-header.is-loaded .hero-subtitle {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ====== CTA buttons ====== */
+.hero-cta {
+  display: flex;
+  gap: .75rem;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .7s ease .22s, transform .7s ease .22s;
+}
+.hero-header.is-loaded .hero-cta {
+  opacity: 1; transform: translateY(0);
+}
+
+.btn-ghost,
+.btn-solid {
+  border-radius: 999px;
+  padding: .7rem 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+  border: 1px solid #C2A072;
+  color: #C2A072;
+  background: transparent;
+  display: inline-block;
+  transform: translateZ(0);
+  transition: transform .2s ease, background .2s ease, color .2s ease, box-shadow .2s ease;
+}
+.btn-solid {
+  background: #C2A072;
+  color: #06141b;
+  border-color: transparent;
+}
+.btn-ghost:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.2); }
+.btn-solid:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(194,160,114,.35); }
+
+/* ====== Floating orbs (decor) ====== */
+.orb {
+  position: absolute;
+  width: 36vmin;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(194,160,114,.35), rgba(194,160,114,0) 60%);
+  filter: blur(18px);
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(.9);
+  transition: opacity .8s ease .15s, transform .8s ease .15s;
+}
+.hero-header.is-loaded .orb { opacity: .8; transform: translate(-50%, -50%) scale(1); }
+
+.orb-1 { top: 18%; left: 18%; animation: drift1 16s ease-in-out infinite alternate; }
+.orb-2 { top: 72%; left: 28%; animation: drift2 20s ease-in-out infinite alternate; }
+.orb-3 { top: 36%; left: 82%; animation: drift3 22s ease-in-out infinite alternate; }
+
+@keyframes drift1 { from { transform: translate(-52%, -48%) scale(1); } to { transform: translate(-48%, -52%) scale(1.08); } }
+@keyframes drift2 { from { transform: translate(-50%, -50%) scale(.95); } to { transform: translate(-47%, -53%) scale(1.06); } }
+@keyframes drift3 { from { transform: translate(-53%, -49%) scale(1.02); } to { transform: translate(-49%, -54%) scale(1.1); } }
+
+/* Parallax influence */
+.hero-header.is-loaded .orb-1,
+.hero-header.is-loaded .orb-2,
+.hero-header.is-loaded .orb-3 {
+  will-change: transform;
+}
+
+/* ====== Bottom wave ====== */
+.wave {
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  width: 100%;
+  height: 90px;
+  fill: #06141b;
+  opacity: .9;
+  transform: translateY(6px);
+  animation: waveRise 1.2s ease .25s forwards;
+}
+@keyframes waveRise { to { transform: translateY(0); } }
+
+/* ====== Accessibility: reduced motion ====== */
+@media (prefers-reduced-motion: reduce) {
+  .hero-header,
+  .orb,
+  .wave,
+  .hero-title,
+  .hero-subtitle,
+  .hero-cta { animation: none!important; transition: none!important; }
+}

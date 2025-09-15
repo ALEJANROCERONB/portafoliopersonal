@@ -1,0 +1,190 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  user-select: none;
+}
+
+/* Color de fondo de la página completa */
+body {
+  min-height: 100vh; /* Asegura que ocupe toda la altura de la pantalla */
+  width: 100vw; /* Asegura que el body ocupe todo el ancho */
+  display: block; /* No usamos flex aquí, solo bloque */
+  background: #06141b;
+}
+
+/* Contenedor con todo el contenido */
+.content {
+  width: 100%; /* Asegura que ocupe el 100% del ancho de la pantalla */
+  height: 100%; /* Ocupa el 100% de la altura de la pantalla */
+  display: block; /* Usamos display block para apilar los contenedores */
+  background: #06141b;
+}
+
+/* Contenedor inferior con fondo oscuro */
+.lower-container {
+  background: #06141b;
+  text-align: center;
+  color: white;
+  padding: 5px 0;
+  width: 100vw; /* Ocupa todo el ancho de la pantalla */
+  position: relative;
+  height: 50vh; /* Ocupa el 50% restante de la pantalla */
+}
+
+
+/* Estilo para el texto en la sección inferior */
+.lower-container h2 {
+  font-size: 2rem;
+  margin-top: 50px;
+  background: #06141b;
+}
+
+.lower-container,
+.fade-swap {
+  background-color: #06141b;   /* asegura fondo oscuro constante */
+}
+
+.row-container {
+  display: flex;
+  justify-content: center; /* Centra los elementos horizontalmente */
+  align-items: flex-start; /* Centra verticalmente los elementos */
+  width: 100%; /* Asegura que el contenedor ocupe el ancho completo */
+  background: #06141b;
+  margin: 0;
+}
+
+img {
+  -webkit-user-drag: none;
+  pointer-events: auto;
+}
+
+
+
+/* Fade suave del contenido al cambiar de tab */
+.fade-swap {
+  will-change: transform;
+  transform: translateY(12px);
+  animation: slideUp .35s ease-out forwards;
+  backface-visibility: hidden;   /* evita glitches de pintura */
+  transform: translateZ(0);      /* fuerza aceleración y prepaint */
+}
+/* Reset básico */
+* { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
+body { min-height: 100vh; width: 100vw; display: block; background: #06141b; }
+.content { width: 100%; display: block; }
+
+/* Sección inferior y transiciones de contenido */
+.lower-container,
+.fade-swap { background-color: #06141b; }
+.fade-swap {
+  will-change: transform;
+  transform: translateY(12px);
+  animation: slideUp .35s ease-out forwards;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+@keyframes slideUp { to { transform: translateY(0); } }
+
+/* NAV: quita opacidad para evitar flash */
+.top-nav {
+  background-color: #06141b;
+  transform: translateY(-12px);
+  transition: transform .6s ease;           /* 👈 solo transform */
+  position: relative;                        /* por si no viene inline */
+  min-height: 60px;                          /* espacio para la hamburguesa */
+}
+.content.is-loaded .top-nav { transform: translateY(0); }
+
+/* Indicador activo (una sola vez) */
+.active-indicator {
+  position: absolute; bottom: 0; left: 0; height: 4px;
+  background: #C2A072;
+  transition: transform .35s ease;
+  will-change: transform;
+  pointer-events: none;
+}
+
+/* Items desktop */
+.top-nav-items { display: flex; flex: 1; z-index: 1; }
+
+/* --- Botón hamburguesa --- */
+/* Botón hamburguesa: oculto por defecto */
+.hamburger {
+  display: none;                 /* 🔑 oculto en escritorio */
+  position: absolute;
+  right: 8px;                    /* en el lado derecho */
+  top: 8px;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #253846;
+  border-radius: 10px;
+  background: transparent;
+  cursor: pointer;
+  z-index: 5;
+
+  /* Flex interno para las barras */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 6px;
+}
+
+/* Las 3 barras */
+.hamburger .bar {
+  width: 24px;
+  height: 3px;
+  background-color: #fff;        /* 🔴 color visible */
+  margin: 3px 0;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Animación a X (opcional) */
+.hamburger.is-open .bar:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.hamburger.is-open .bar:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.is-open .bar:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* Mostrar en móvil */
+@media (max-width: 768px) {
+  .hamburger { display: flex; }   /* 🔴 importante: flex aquí */
+}
+
+
+
+/* Drawer móvil (oculto por defecto) */
+.mobile-drawer {
+  display: none;
+  background: #06141b;
+  border-bottom: 1px solid #253846;
+  max-height: 0; overflow: hidden;
+  transition: max-height .35s ease;          /* sin opacity -> no flash */
+}
+.mobile-drawer.open { max-height: 220px; }
+.mobile-item {
+  padding: 12px 16px; text-align: center; color: #fff;
+  border-top: 1px solid #0d2733; font-weight: 700; letter-spacing: .18em;
+}
+.mobile-item:active { background: #0c1d26; }
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .hamburger { display: inline-flex; }       /* 👈 muestra la hamburguesa */
+  .top-nav-items { display: none; }          /* oculta items desktop */
+  .active-indicator { display: none; }
+  .top-nav { padding-left: 56px; }           /* deja espacio al botón */
+  .mobile-drawer { display: block; }
+}
+
+/* Accesibilidad motion */
+@media (prefers-reduced-motion: reduce) {
+  .top-nav { transition: none !important; transform: none !important; }
+  .mobile-drawer { transition: none !important; }
+}

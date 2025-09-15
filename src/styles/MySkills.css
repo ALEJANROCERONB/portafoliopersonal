@@ -1,0 +1,38 @@
+/* Estado inicial: oculto con fondo oscuro */
+.skill-card {
+  background-color: #06141b;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+
+  /* Animación inicial */
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+  will-change: opacity, transform;
+}
+
+.skill-card.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.skill-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Evita destello en modo reducido de movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .skill-card,
+  .skill-card.show {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
