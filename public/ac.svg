@@ -1,0 +1,13 @@
+<!-- public/logo-ac.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Fondo (redondeado) -->
+  <rect x="0" y="0" width="64" height="64" rx="12" fill="#06141b"></rect>
+  <!-- Trazos AC -->
+  <g fill="none" stroke="#C2A072" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- A -->
+    <path d="M18 48 L28 16 L38 48"></path>
+    <path d="M22 36 H34"></path>
+    <!-- C -->
+    <path d="M50 22 A14 14 0 1 0 50 42"></path>
+  </g>
+</svg>
