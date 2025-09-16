@@ -17,8 +17,8 @@ export default function Work() {
       <ProjectCard
         title="🥗 Nutricionista Web Page"
         youtubeLink="https://www.youtube.com/embed/dTnQJo2x7oA"
-        externalLink="https://mysavedlikes.itoeste.com"
-        githubLink="https://github.com/tuusuario/savedlikes"
+        externalLink="https://marcelanutricionista.vercel.app/"
+        githubLink="https://github.com/ALEJANROCERONB/marcelanutricionista"
         description={[
           "This is a professional landing page developed 100% by me using React. It was created for a nutritionist to showcase her services, provide contact options, and present her online presence in a visually attractive and responsive format.",
           "I handled the entire process, from design to development, including layout structure, color palette, and component styling.",
