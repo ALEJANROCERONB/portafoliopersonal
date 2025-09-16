@@ -75,7 +75,7 @@ export default function Work() {
       />
       <ProjectCard
         title="Tasks and Projects App"
-        imageSrc="/images/PROJECTS.png"
+        imageSrc="/images/projects.png"
         externalLink="https://projects-and-tasks-hazel.vercel.app/"
         githubLink="https://github.com/ALEJANROCERONB/PROJECTS-AND-TASKS.git"
         description={[
