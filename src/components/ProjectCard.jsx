@@ -3,6 +3,7 @@ import React from "react";
 export default function ProjectCard({
   title,
   youtubeLink,
+  imageSrc, 
   description,
   note,
   externalLink,
@@ -14,43 +15,40 @@ export default function ProjectCard({
         maxWidth: "900px",
         margin: "40px auto",
         backgroundColor: "#06141b",
-        backgroundImage: "none",
         padding: "20px",
         borderRadius: "16px",
         boxShadow: "0 0 10px rgba(0,0,0,0.4)",
       }}
     >
-      <h3
-        style={{
-          color: "#C2A072",
-          backgroundColor: "#06141b",
-          backgroundImage: "none",
-        }}
-      >
+      <h3 style={{ color: "#C2A072", backgroundColor: "#06141b" }}>
         {title}
       </h3>
 
-      <div
-        style={{
-          margin: "20px 0",
-          backgroundColor: "#06141b",
-          backgroundImage: "none",
-        }}
-      >
-        <iframe
-          width="100%"
-          height="315"
-          src={youtubeLink}
-          title={`${title} Demo`}
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          style={{
-            borderRadius: "12px",
-            backgroundColor: "#06141b",
-            backgroundImage: "none",
-          }}
-        ></iframe>
+      <div style={{ margin: "20px 0", backgroundColor: "#06141b" }}>
+        {youtubeLink ? (
+          <iframe
+            width="100%"
+            height="315"
+            src={youtubeLink}
+            title={`${title} Demo`}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            style={{ borderRadius: "12px", backgroundColor: "#06141b" }}
+          ></iframe>
+        ) : imageSrc ? (
+          <img
+            src={imageSrc}
+            alt={title}
+            style={{
+              width: "100%",
+              height: "315px", // misma altura que el video
+              objectFit: "cover",
+              borderRadius: "12px",
+              backgroundColor: "#06141b",
+            }}
+          />
+        ) : null}
       </div>
 
       {description.map((paragraph, index) => (
@@ -59,7 +57,6 @@ export default function ProjectCard({
           style={{
             lineHeight: "1.6",
             backgroundColor: "#06141b",
-            backgroundImage: "none",
             marginBottom: "10px",
           }}
         >
@@ -73,7 +70,6 @@ export default function ProjectCard({
             fontStyle: "italic",
             color: "#aaa",
             backgroundColor: "#06141b",
-            backgroundImage: "none",
           }}
         >
           {note}
@@ -81,13 +77,7 @@ export default function ProjectCard({
       )}
 
       {(externalLink || githubLink) && (
-        <div
-          style={{
-            marginTop: "20px",
-            backgroundColor: "#06141b",
-            backgroundImage: "none",
-          }}
-        >
+        <div style={{ marginTop: "20px", backgroundColor: "#06141b" }}>
           {externalLink && (
             <a
               href={externalLink}
@@ -98,8 +88,6 @@ export default function ProjectCard({
                 marginRight: "15px",
                 color: "#C2A072",
                 textDecoration: "underline",
-                backgroundColor: "#06141b",
-                backgroundImage: "none",
               }}
             >
               Visit Project
@@ -115,8 +103,6 @@ export default function ProjectCard({
                 display: "inline-block",
                 color: "#C2A072",
                 textDecoration: "underline",
-                backgroundColor: "#06141b",
-                backgroundImage: "none",
               }}
             >
               View on GitHub
