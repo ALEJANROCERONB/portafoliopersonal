@@ -1,4 +1,5 @@
 import { FaWhatsapp } from "react-icons/fa"; // Asegúrate de tener react-icons instalado: npm install react-icons
+import Footer from "../components/Footer";
 
 export default function Contact() {
   return (
@@ -32,40 +33,38 @@ export default function Contact() {
         </a>
       </p>
 
-{/* WhatsApp Button */}
-<a
-  href="https://wa.me/573207056334"
-  target="_blank"
-  rel="noopener noreferrer"
-  style={{
-    display: "inline-flex",
-    flexDirection: "row",          // fuerza icono + texto en una fila
-    alignItems: "center",
-    justifyContent: "center",
-    gap: "8px",
-    padding: "12px 24px",
-    marginBottom: "20px",
-    backgroundColor: "#25D366",
-    color: "#ffffff",
-    borderRadius: "8px",
-    textDecoration: "none",
-    fontWeight: "bold",
-    transition: "opacity 0.3s",
-    verticalAlign: "middle",       // ayuda en caso de reglas globales
-  }}
-  onMouseEnter={(e) => {
-    e.currentTarget.style.opacity = "0.85";
-  }}
-  onMouseLeave={(e) => {
-    e.currentTarget.style.opacity = "1";
-  }}
->
-
-  <span style={{ display: "inline-block", verticalAlign: "middle" }}>
-    Chat on WhatsApp
-  </span>
-
-</a>
+      {/* WhatsApp Button */}
+      <a
+        href="https://wa.me/573207056334"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          display: "inline-flex",
+          flexDirection: "row", // fuerza icono + texto en una fila
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "8px",
+          padding: "12px 24px",
+          marginBottom: "20px",
+          backgroundColor: "#25D366",
+          color: "#ffffff",
+          borderRadius: "8px",
+          textDecoration: "none",
+          fontWeight: "bold",
+          transition: "opacity 0.3s",
+          verticalAlign: "middle", // ayuda en caso de reglas globales
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.opacity = "0.85";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.opacity = "1";
+        }}
+      >
+        <span style={{ display: "inline-block", verticalAlign: "middle" }}>
+          Chat on WhatsApp
+        </span>
+      </a>
 
       {/* LinkedIn Button */}
       <a
@@ -122,6 +121,10 @@ export default function Contact() {
       >
         Visit my Github profile here
       </a>
+
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 }

@@ -33,7 +33,6 @@ body {
   height: 50vh; /* Ocupa el 50% restante de la pantalla */
 }
 
-
 /* Estilo para el texto en la sección inferior */
 .lower-container h2 {
   font-size: 2rem;
@@ -43,7 +42,7 @@ body {
 
 .lower-container,
 .fade-swap {
-  background-color: #06141b;   /* asegura fondo oscuro constante */
+  background-color: #06141b; /* asegura fondo oscuro constante */
 }
 
 .row-container {
@@ -60,61 +59,87 @@ img {
   pointer-events: auto;
 }
 
-
-
 /* Fade suave del contenido al cambiar de tab */
 .fade-swap {
   will-change: transform;
   transform: translateY(12px);
-  animation: slideUp .35s ease-out forwards;
-  backface-visibility: hidden;   /* evita glitches de pintura */
-  transform: translateZ(0);      /* fuerza aceleración y prepaint */
+  animation: slideUp 0.35s ease-out forwards;
+  backface-visibility: hidden; /* evita glitches de pintura */
+  transform: translateZ(0); /* fuerza aceleración y prepaint */
 }
 /* Reset básico */
-* { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
-body { min-height: 100vh; width: 100vw; display: block; background: #06141b; }
-.content { width: 100%; display: block; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+body {
+  min-height: 100vh;
+  width: 100vw;
+  display: block;
+  background: #06141b;
+}
+.content {
+  width: 100%;
+  display: block;
+}
 
 /* Sección inferior y transiciones de contenido */
 .lower-container,
-.fade-swap { background-color: #06141b; }
+.fade-swap {
+  background-color: #06141b;
+}
 .fade-swap {
   will-change: transform;
   transform: translateY(12px);
-  animation: slideUp .35s ease-out forwards;
+  animation: slideUp 0.35s ease-out forwards;
   backface-visibility: hidden;
   transform: translateZ(0);
 }
-@keyframes slideUp { to { transform: translateY(0); } }
+@keyframes slideUp {
+  to {
+    transform: translateY(0);
+  }
+}
 
 /* NAV: quita opacidad para evitar flash */
 .top-nav {
   background-color: #06141b;
   transform: translateY(-12px);
-  transition: transform .6s ease;           /* 👈 solo transform */
-  position: relative;                        /* por si no viene inline */
-  min-height: 60px;                          /* espacio para la hamburguesa */
+  transition: transform 0.6s ease; /* 👈 solo transform */
+  position: relative; /* por si no viene inline */
+  min-height: 60px; /* espacio para la hamburguesa */
 }
-.content.is-loaded .top-nav { transform: translateY(0); }
+.content.is-loaded .top-nav {
+  transform: translateY(0);
+}
 
 /* Indicador activo (una sola vez) */
 .active-indicator {
-  position: absolute; bottom: 0; left: 0; height: 4px;
-  background: #C2A072;
-  transition: transform .35s ease;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  background: #c2a072;
+  transition: transform 0.35s ease;
   will-change: transform;
   pointer-events: none;
 }
 
 /* Items desktop */
-.top-nav-items { display: flex; flex: 1; z-index: 1; }
+.top-nav-items {
+  display: flex;
+  flex: 1;
+  z-index: 1;
+}
 
 /* --- Botón hamburguesa --- */
 /* Botón hamburguesa: oculto por defecto */
 .hamburger {
-  display: none;                 /* 🔑 oculto en escritorio */
+  display: none; /* 🔑 oculto en escritorio */
   position: absolute;
-  right: 8px;                    /* en el lado derecho */
+  right: 8px; /* en el lado derecho */
   top: 8px;
   width: 44px;
   height: 44px;
@@ -135,7 +160,7 @@ body { min-height: 100vh; width: 100vw; display: block; background: #06141b; }
 .hamburger .bar {
   width: 24px;
   height: 3px;
-  background-color: #fff;        /* 🔴 color visible */
+  background-color: #fff; /* 🔴 color visible */
   margin: 3px 0;
   border-radius: 2px;
   transition: transform 0.3s ease, opacity 0.3s ease;
@@ -154,37 +179,74 @@ body { min-height: 100vh; width: 100vw; display: block; background: #06141b; }
 
 /* Mostrar en móvil */
 @media (max-width: 768px) {
-  .hamburger { display: flex; }   /* 🔴 importante: flex aquí */
+  .hamburger {
+    display: flex;
+  } /* 🔴 importante: flex aquí */
 }
-
-
 
 /* Drawer móvil (oculto por defecto) */
 .mobile-drawer {
   display: none;
   background: #06141b;
   border-bottom: 1px solid #253846;
-  max-height: 0; overflow: hidden;
-  transition: max-height .35s ease;          /* sin opacity -> no flash */
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease; /* sin opacity -> no flash */
 }
-.mobile-drawer.open { max-height: 220px; }
+.mobile-drawer.open {
+  max-height: 220px;
+}
 .mobile-item {
-  padding: 12px 16px; text-align: center; color: #fff;
-  border-top: 1px solid #0d2733; font-weight: 700; letter-spacing: .18em;
+  padding: 12px 16px;
+  text-align: center;
+  color: #fff;
+  border-top: 1px solid #0d2733;
+  font-weight: 700;
+  letter-spacing: 0.18em;
 }
-.mobile-item:active { background: #0c1d26; }
+.mobile-item:active {
+  background: #0c1d26;
+}
 
 /* --- Responsive --- */
 @media (max-width: 768px) {
-  .hamburger { display: inline-flex; }       /* 👈 muestra la hamburguesa */
-  .top-nav-items { display: none; }          /* oculta items desktop */
-  .active-indicator { display: none; }
-  .top-nav { padding-left: 56px; }           /* deja espacio al botón */
-  .mobile-drawer { display: block; }
+  .hamburger {
+    display: inline-flex;
+  } /* 👈 muestra la hamburguesa */
+  .top-nav-items {
+    display: none;
+  } /* oculta items desktop */
+  .active-indicator {
+    display: none;
+  }
+  .top-nav {
+    padding-left: 56px;
+  } /* deja espacio al botón */
+  .mobile-drawer {
+    display: block;
+  }
 }
 
 /* Accesibilidad motion */
 @media (prefers-reduced-motion: reduce) {
-  .top-nav { transition: none !important; transform: none !important; }
-  .mobile-drawer { transition: none !important; }
+  .top-nav {
+    transition: none !important;
+    transform: none !important;
+  }
+  .mobile-drawer {
+    transition: none !important;
+  }
+}
+
+/* App.css */
+footer {
+  background-color: #06141b;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+}
+
+footer p {
+  margin-top: 10%;
+  font-size: 14px;
 }

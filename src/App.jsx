@@ -6,6 +6,7 @@ import MySkills from "./components/MySkills";
 import Work from "./views/work";
 import Contact from "./views/contact";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
   const [activeTab, setActiveTab] = useState("home");
@@ -74,18 +75,16 @@ function App() {
         }}
       >
         {/* Botón hamburguesa (solo se ve en móvil via CSS) */}
-<button
-  className={`hamburger ${isMenuOpen ? "is-open" : ""}`}
-  aria-label="Open menu"
-  aria-expanded={isMenuOpen}
-  onClick={() => setIsMenuOpen((v) => !v)}
->
-  <span className="bar"></span>
-  <span className="bar"></span>
-  <span className="bar"></span>
-</button>
-
-
+        <button
+          className={`hamburger ${isMenuOpen ? "is-open" : ""}`}
+          aria-label="Open menu"
+          aria-expanded={isMenuOpen}
+          onClick={() => setIsMenuOpen((v) => !v)}
+        >
+          <span className="bar"></span>
+          <span className="bar"></span>
+          <span className="bar"></span>
+        </button>
 
         {/* Indicador activo (oculto en móvil via CSS) */}
         <div

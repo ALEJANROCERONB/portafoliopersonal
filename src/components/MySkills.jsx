@@ -10,7 +10,8 @@ import {
   FaGitAlt,
 } from "react-icons/fa";
 import { SiMongodb, SiMysql, SiTailwindcss } from "react-icons/si";
-import "../styles/MySkills.css"; 
+import "../styles/MySkills.css";
+import Footer from "./Footer";
 
 const skillData = [
   { name: "React", icon: <FaReact color="#61DBFB" size={40} /> },
@@ -83,6 +84,7 @@ export default function MySkills() {
           </div>
         ))}
       </div>
+      <Footer />
     </div>
   );
 }

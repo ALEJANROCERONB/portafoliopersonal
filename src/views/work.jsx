@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 import ProjectCard from "../components/ProjectCard";
 
 export default function Work() {
@@ -84,6 +85,10 @@ export default function Work() {
         ]}
         note="Note: This is a publicly accessible project created independently outside of any company."
       />
+
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 }
