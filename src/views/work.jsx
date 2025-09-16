@@ -16,7 +16,7 @@ export default function Work() {
 
       <ProjectCard
         title="🥗 Nutricionista Web Page"
-        imageSrc="public\images\marcela.png"
+       imageSrc="/images/marcela.png"
         externalLink="https://marcelanutricionista.vercel.app/"
         githubLink="https://github.com/ALEJANROCERONB/marcelanutricionista"
         description={[
@@ -29,7 +29,7 @@ export default function Work() {
 
       <ProjectCard
         title="Tic Tac Toe"
-        imageSrc="public\images\tictactoe.png"
+        imageSrc="/images/tictactoe.png"
         externalLink="https://07-tic-tac-toe-starting-project-sand.vercel.app/"
         githubLink="https://github.com/ALEJANROCERONB/07-tic-tac-toe-starting-project.git"
         description={[
@@ -64,7 +64,7 @@ export default function Work() {
 
       <ProjectCard
         title="Game Timer"
-        imageSrc="public\images\countgame.png"
+        imageSrc="/images/countgame.png"
         externalLink="https://game-timer-pearl.vercel.app/"
         githubLink="https://github.com/ALEJANROCERONB/game-timer"
         description={[
@@ -75,7 +75,7 @@ export default function Work() {
       />
       <ProjectCard
         title="Tasks and Projects App"
-        imageSrc="public\images\PROJECTS.png"
+        imageSrc="/images/PROJECTS.png"
         externalLink="https://projects-and-tasks-hazel.vercel.app/"
         githubLink="https://github.com/ALEJANROCERONB/PROJECTS-AND-TASKS.git"
         description={[
