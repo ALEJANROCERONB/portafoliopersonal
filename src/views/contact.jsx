@@ -1,130 +1,75 @@
-import { FaWhatsapp } from "react-icons/fa"; // Asegúrate de tener react-icons instalado: npm install react-icons
+import { FaEnvelope, FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import Footer from "../components/Footer";
+import "../styles/Contact.css";
+
+const contactLinks = [
+  {
+    id: "email",
+    icon: <FaEnvelope />,
+    label: "Email",
+    value: "alejoceronbacares@gmail.com",
+    href: "mailto:alejoceronbacares@gmail.com",
+  },
+  {
+    id: "whatsapp",
+    icon: <FaWhatsapp />,
+    label: "WhatsApp",
+    value: "Chat directly with me",
+    href: "https://wa.me/573207056334",
+    external: true,
+    accent: "whatsapp",
+  },
+  {
+    id: "linkedin",
+    icon: <FaLinkedin />,
+    label: "LinkedIn",
+    value: "alejandro-ceron-bacares",
+    href: "https://www.linkedin.com/in/alejandro-ceron-bacares/",
+    external: true,
+  },
+  {
+    id: "github",
+    icon: <FaGithub />,
+    label: "GitHub",
+    value: "ALEJANROCERONB",
+    href: "https://github.com/ALEJANROCERONB",
+    external: true,
+  },
+];
 
 export default function Contact() {
   return (
-    <div
-      style={{
-        backgroundColor: "#06141b",
-        color: "white",
-        padding: "40px",
-        textAlign: "center",
-      }}
-    >
-      <h2 style={{ color: "#C2A072", marginBottom: "20px" }}>Contact Me</h2>
-
-      <p
-        style={{
-          fontSize: "18px",
-          marginBottom: "30px",
-          backgroundColor: "#06141b",
-        }}
-      >
-        📧{" "}
-        <a
-          href="mailto:alejoceronbacares@gmail.com"
-          style={{
-            color: "#C2A072",
-            textDecoration: "none",
-            backgroundColor: "#06141b",
-          }}
-        >
-          alejoceronbacares@gmail.com
-        </a>
+    <div className="contact-page">
+      <h2 className="contact-heading">Let&apos;s Talk</h2>
+      <p className="contact-subheading">
+        Have a project in mind or just want to say hi? Pick whichever channel
+        works best for you.
       </p>
 
-      {/* WhatsApp Button */}
-      <a
-        href="https://wa.me/573207056334"
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{
-          display: "inline-flex",
-          flexDirection: "row", // fuerza icono + texto en una fila
-          alignItems: "center",
-          justifyContent: "center",
-          gap: "8px",
-          padding: "12px 24px",
-          marginBottom: "20px",
-          backgroundColor: "#25D366",
-          color: "#ffffff",
-          borderRadius: "8px",
-          textDecoration: "none",
-          fontWeight: "bold",
-          transition: "opacity 0.3s",
-          verticalAlign: "middle", // ayuda en caso de reglas globales
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.opacity = "0.85";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.opacity = "1";
-        }}
-      >
-        <span style={{ display: "inline-block", verticalAlign: "middle" }}>
-          Chat on WhatsApp
-        </span>
-      </a>
-
-      {/* LinkedIn Button */}
-      <a
-        href="https://www.linkedin.com/in/alejandro-ceron-bacares/"
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{
-          display: "inline-block",
-          padding: "12px 24px",
-          backgroundColor: "#06141b",
-          color: "#ffffff",
-          border: "2px solid #C2A072",
-          borderRadius: "8px",
-          textDecoration: "none",
-          fontWeight: "bold",
-          transition: "background-color 0.3s, color 0.3s",
-          marginBottom: "20px",
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = "#C2A072";
-          e.currentTarget.style.color = "#06141b";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.backgroundColor = "#06141b";
-          e.currentTarget.style.color = "#ffffff";
-        }}
-      >
-        Visit my LinkedIn profile here
-      </a>
-
-      <a
-        href="https://github.com/ALEJANROCERONB"
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{
-          display: "inline-block",
-          padding: "12px 24px",
-          backgroundColor: "#06141b",
-          color: "#ffffff",
-          border: "2px solid #C2A072",
-          borderRadius: "8px",
-          textDecoration: "none",
-          fontWeight: "bold",
-          transition: "background-color 0.3s, color 0.3s",
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = "#C2A072";
-          e.currentTarget.style.color = "#06141b";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.backgroundColor = "#06141b";
-          e.currentTarget.style.color = "#ffffff";
-        }}
-      >
-        Visit my Github profile here
-      </a>
-
-      <div>
-        <Footer />
+      <div className="contact-grid">
+        {contactLinks.map((link) => (
+          <a
+            key={link.id}
+            href={link.href}
+            target={link.external ? "_blank" : undefined}
+            rel={link.external ? "noopener noreferrer" : undefined}
+            className={`contact-card${
+              link.accent ? ` contact-card--${link.accent}` : ""
+            }`}
+          >
+            <span className="contact-card-icon">{link.icon}</span>
+            <span className="contact-card-text">
+              <span className="contact-card-label">{link.label}</span>
+              <span className="contact-card-value">{link.value}</span>
+            </span>
+            <span className="contact-card-arrow" aria-hidden="true">
+              &rarr;
+            </span>
+          </a>
+        ))}
       </div>
+
+      <Footer />
     </div>
   );
 }

@@ -1,0 +1,115 @@
+.contact-page {
+  background-color: #06141b;
+  color: #fff;
+  padding: 60px 20px 40px;
+}
+
+.contact-heading {
+  text-align: center;
+  color: #c2a072;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  margin: 0 0 0.5rem;
+}
+
+.contact-subheading {
+  text-align: center;
+  color: #9fb2bd;
+  max-width: 520px;
+  margin: 0 auto 2.5rem;
+  font-family: "Lato", sans-serif;
+  line-height: 1.5;
+}
+
+/* ====== Grid ====== */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  max-width: 760px;
+  margin: 0 auto 40px;
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 16px;
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid #1a2f3a;
+  background: #0c1d26;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+.contact-card:hover,
+.contact-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
+  border-color: rgba(194, 160, 114, 0.5);
+  outline: none;
+}
+
+.contact-card-icon {
+  flex: none;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(194, 160, 114, 0.1);
+  color: #c2a072;
+}
+.contact-card-icon svg {
+  width: 22px;
+  height: 22px;
+}
+.contact-card--whatsapp .contact-card-icon {
+  background: rgba(37, 211, 102, 0.12);
+  color: #25d366;
+}
+
+.contact-card-text {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  min-width: 0;
+  flex: 1;
+}
+.contact-card-label {
+  width: 100%;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #8fa1ab;
+  margin-bottom: 2px;
+}
+.contact-card-value {
+  width: 100%;
+  font-weight: 700;
+  color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.contact-card-arrow {
+  flex: none;
+  width: auto;
+  color: #c2a072;
+  font-size: 1.2rem;
+  transform: translateX(0);
+  transition: transform 0.25s ease;
+}
+.contact-card:hover .contact-card-arrow {
+  transform: translateX(4px);
+}
+
+@media (max-width: 600px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
