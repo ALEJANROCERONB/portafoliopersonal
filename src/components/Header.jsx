@@ -26,8 +26,6 @@ const Header = () => {
 
       el.style.setProperty("--parallax-x", `${dx * 10}px`);
       el.style.setProperty("--parallax-y", `${dy * 8}px`);
-      el.style.setProperty("--tilt-x", `${dy * -8}deg`);
-      el.style.setProperty("--tilt-y", `${dx * 10}deg`);
     };
 
     window.addEventListener("mousemove", onMove);
@@ -46,19 +44,13 @@ const Header = () => {
           Available for new projects
         </span>
 
-        {/* Contenedor flex: logo 3D + texto */}
+        {/* Logo estático + texto; un anillo se dibuja alrededor del logo al cargar */}
         <div className="title-with-logo">
-          <div className="logo-3d-scene" aria-hidden="true">
-            <div className="logo-3d-tilt">
-              <div className="logo-3d-cube">
-                <span className="cube-face face-front">AC</span>
-                <span className="cube-face face-back">AC</span>
-                <span className="cube-face face-right" />
-                <span className="cube-face face-left" />
-                <span className="cube-face face-top" />
-                <span className="cube-face face-bottom" />
-              </div>
-            </div>
+          <div className="logo-ring-wrap">
+            <img src="/ac.svg" alt="AC Logo" className="logo-round" />
+            <svg className="logo-ring" viewBox="0 0 100 100" aria-hidden="true">
+              <circle className="logo-ring-circle" cx="50" cy="50" r="46" />
+            </svg>
           </div>
           <div className="title-text">
             <h1 className="hero-title">ALEJANDRO DEVELOPER</h1>
