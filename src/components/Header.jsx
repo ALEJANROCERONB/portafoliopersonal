@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import "../styles/Header.css";
 
-const Header = () => {
+const Header = ({ onNavigate }) => {
   const headerRef = useRef(null);
 
   useEffect(() => {
@@ -32,6 +32,11 @@ const Header = () => {
     return () => window.removeEventListener("mousemove", onMove);
   }, []);
 
+  const handleNav = (tab) => (e) => {
+    e.preventDefault();
+    if (onNavigate) onNavigate(tab);
+  };
+
   return (
     <header className="hero-header" ref={headerRef}>
       <span className="orb orb-1" aria-hidden="true" />
@@ -39,6 +44,11 @@ const Header = () => {
       <span className="orb orb-3" aria-hidden="true" />
 
       <div className="overlay">
+        <span className="hero-badge">
+          <span className="badge-dot" aria-hidden="true" />
+          Disponible para nuevos proyectos
+        </span>
+
         {/* Contenedor flex: logo + texto */}
         <div className="title-with-logo">
           <img src="/ac.svg" alt="AC Logo" className="logo-round" />
@@ -49,6 +59,19 @@ const Header = () => {
             </p>
           </div>
         </div>
+
+        <div className="hero-cta">
+          <a href="#work" className="btn-solid" onClick={handleNav("work")}>
+            Ver Proyectos
+          </a>
+          <a href="#contact" className="btn-ghost" onClick={handleNav("contact")}>
+            Contactar
+          </a>
+        </div>
+      </div>
+
+      <div className="scroll-cue" aria-hidden="true">
+        <span className="scroll-cue-line" />
       </div>
 
       <svg

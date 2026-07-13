@@ -4,7 +4,8 @@
   --parallax-y: 0px;
 
   width: 100%;
-  height: min(40vh, 760px);
+  height: min(46vh, 820px);
+  min-height: 460px;
   position: relative;
   display: grid;
   place-items: center;
@@ -12,7 +13,7 @@
   user-select: none;
 
   /* Ken Burns background (slow pan + scale) */
-  background-image: url("/images/background.jpg");
+  background-image: url("/images/header-bg.svg");
   background-size: 110% 110%;
   background-position: center;
   background-repeat: no-repeat;
@@ -31,20 +32,67 @@
   100% { background-position: 54% 48%; background-size: 116%; }
 }
 
-/* .overlay {
+.overlay {
   position: relative;
+  z-index: 2;
   width: 100%;
   height: 100%;
-  background: radial-gradient(ellipse at 50% 30%, rgba(0,0,0,.35), rgba(0,0,0,.65));
-  display: grid;
-  place-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  background: radial-gradient(ellipse at 50% 30%, rgba(6,20,27,.15), rgba(6,20,27,.7) 75%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   color: #fff;
   padding: 0 20px;
+  gap: 1.15rem;
 
   transform: translate(var(--parallax-x), var(--parallax-y));
   transition: transform .12s ease-out;
-} */
+}
+
+/* ====== Availability badge ====== */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  padding: .45rem .95rem;
+  border-radius: 999px;
+  border: 1px solid rgba(194,160,114,.4);
+  background: rgba(194,160,114,.08);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #C2A072;
+  font-family: 'Lato', sans-serif;
+  font-size: .75rem;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  font-weight: 600;
+
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.hero-header.is-loaded .hero-badge {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.badge-dot {
+  width: 7px;
+  height: 7px;
+  flex: none;
+  border-radius: 50%;
+  background: #C2A072;
+  animation: pulseDot 2.2s ease-in-out infinite;
+}
+@keyframes pulseDot {
+  0% { box-shadow: 0 0 0 0 rgba(194,160,114,.55); }
+  70% { box-shadow: 0 0 0 8px rgba(194,160,114,0); }
+  100% { box-shadow: 0 0 0 0 rgba(194,160,114,0); }
+}
 
 /* ====== Typography entrance ====== */
 .hero-title {
@@ -85,7 +133,10 @@
 /* ====== CTA buttons ====== */
 .hero-cta {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: .75rem;
+  margin-top: .3rem;
   opacity: 0;
   transform: translateY(6px);
   transition: opacity .7s ease .22s, transform .7s ease .22s;
@@ -145,6 +196,44 @@
   will-change: transform;
 }
 
+/* ====== Scroll cue ====== */
+.scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+  width: 22px;
+  height: 36px;
+  border: 2px solid rgba(255,255,255,.35);
+  border-radius: 999px;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity .8s ease .5s;
+}
+.hero-header.is-loaded .scroll-cue {
+  opacity: 1;
+}
+.scroll-cue-line {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  width: 4px;
+  height: 8px;
+  border-radius: 2px;
+  background: #C2A072;
+  transform: translateX(-50%);
+  animation: scrollDown 1.6s ease-in-out infinite;
+}
+@keyframes scrollDown {
+  0%   { opacity: 0; top: 6px; }
+  30%  { opacity: 1; }
+  80%  { opacity: 0; top: 18px; }
+  100% { opacity: 0; top: 18px; }
+}
+@media (max-width: 600px) {
+  .scroll-cue { display: none; }
+}
+
 /* ====== Bottom wave ====== */
 .wave {
   position: absolute;
@@ -174,7 +263,6 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;         /* espacio entre logo y texto */
-  margin-top: 1rem;  /* separación desde el tope del overlay */
   text-align: left;  /* evita que el texto se centre individualmente */
 }
 
@@ -193,6 +281,7 @@
   object-fit: cover;
   background: #fff;    /* por si el svg tiene transparencia */
   padding: 4px;        /* pequeño margen interior opcional */
+  box-shadow: 0 0 0 2px rgba(194,160,114,.55), 0 8px 24px rgba(0,0,0,.35);
 }
 
 /* Ajuste responsive opcional */

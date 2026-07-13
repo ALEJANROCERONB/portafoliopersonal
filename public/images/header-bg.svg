@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b222d"/>
+      <stop offset="55%" stop-color="#06141b"/>
+      <stop offset="100%" stop-color="#040d12"/>
+    </linearGradient>
+
+    <radialGradient id="glowGold" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#C2A072" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#C2A072" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="glowNavy" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#253846" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#253846" stop-opacity="0"/>
+    </radialGradient>
+
+    <pattern id="dotGrid" width="42" height="42" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.4" fill="#C2A072" fill-opacity="0.16"/>
+    </pattern>
+
+    <linearGradient id="fadeLeft" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#000" stop-opacity="0"/>
+      <stop offset="45%" stop-color="#000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="1"/>
+    </linearGradient>
+    <mask id="traceMask">
+      <rect x="0" y="0" width="1600" height="900" fill="url(#fadeLeft)"/>
+    </mask>
+
+    <filter id="softBlur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="60"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bgGrad)"/>
+
+  <circle cx="220" cy="150" r="260" fill="url(#glowGold)" filter="url(#softBlur)"/>
+  <circle cx="1420" cy="720" r="320" fill="url(#glowNavy)" filter="url(#softBlur)"/>
+  <circle cx="1250" cy="160" r="220" fill="url(#glowGold)" filter="url(#softBlur)" opacity="0.6"/>
+
+  <rect width="1600" height="900" fill="url(#dotGrid)"/>
+
+  <g mask="url(#traceMask)" fill="none" stroke="#C2A072" stroke-width="1.6" stroke-linecap="round" opacity="0.55">
+    <path d="M980 80 H1140 L1180 120 V240 L1230 290 H1400"/>
+    <path d="M1040 40 V70"/>
+    <path d="M1400 290 H1520"/>
+    <path d="M900 340 H1060 L1100 380 V520 L1150 570 H1340 L1380 610 V760"/>
+    <path d="M1060 340 V300"/>
+    <path d="M1180 620 H1480"/>
+    <path d="M1020 700 H1200 L1240 740 V860"/>
+    <path d="M1300 500 H1460 L1500 460 V360"/>
+  </g>
+
+  <g mask="url(#traceMask)" fill="#C2A072" opacity="0.65">
+    <circle cx="1140" cy="80" r="4"/>
+    <circle cx="1180" cy="240" r="4"/>
+    <circle cx="1400" cy="290" r="4"/>
+    <circle cx="1060" cy="340" r="4"/>
+    <circle cx="1150" cy="570" r="4"/>
+    <circle cx="1380" cy="760" r="4"/>
+    <circle cx="1200" cy="700" r="4"/>
+    <circle cx="1460" cy="500" r="4"/>
+    <circle cx="1520" cy="290" r="3.2"/>
+    <circle cx="1480" cy="620" r="3.2"/>
+  </g>
+
+  <text x="1120" y="470" font-family="Consolas, 'Courier New', monospace" font-size="220"
+        fill="#C2A072" fill-opacity="0.05" font-weight="700">&lt;/&gt;</text>
+
+  <rect width="1600" height="900" fill="#06141b" fill-opacity="0.12"/>
+</svg>

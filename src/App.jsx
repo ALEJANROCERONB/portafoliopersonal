@@ -60,7 +60,7 @@ function App() {
 
   return (
     <div ref={rootRef} className="content">
-      <Header />
+      <Header onNavigate={handleNav} />
 
       {/* NAVBAR */}
       <div
