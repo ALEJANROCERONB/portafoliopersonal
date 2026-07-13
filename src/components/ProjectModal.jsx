@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 
 export default function ProjectModal({ project, onClose }) {
   const closeBtnRef = useRef(null);
@@ -33,7 +34,7 @@ export default function ProjectModal({ project, onClose }) {
     githubLink,
   } = project;
 
-  return (
+  return createPortal(
     <div className="project-modal-backdrop" onClick={onClose}>
       <div
         className="project-modal"
@@ -102,6 +103,7 @@ export default function ProjectModal({ project, onClose }) {
           </div>
         )}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
