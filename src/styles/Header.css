@@ -153,55 +153,6 @@
   transform: translateY(0);
 }
 
-/* ====== CTA buttons ====== */
-.hero-cta {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: .75rem;
-  margin-top: .3rem;
-  opacity: 0;
-  transform: translateY(6px);
-  transition: opacity .7s ease .22s, transform .7s ease .22s;
-}
-.hero-header.is-loaded .hero-cta {
-  opacity: 1; transform: translateY(0);
-}
-
-.btn-ghost,
-.btn-solid {
-  width: fit-content;
-  border-radius: 999px;
-  padding: .7rem 1.1rem;
-  font-weight: 700;
-  text-decoration: none;
-  border: 1px solid #C2A072;
-  color: #C2A072;
-  background: transparent;
-  display: inline-block;
-  transform: translateZ(0);
-  transition: transform .2s ease, background .2s ease, color .2s ease, box-shadow .2s ease;
-}
-.btn-solid {
-  background: #C2A072;
-  color: #06141b;
-  border-color: transparent;
-}
-.btn-ghost:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.2); }
-.btn-solid:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(194,160,114,.35); }
-
-@media (min-width: 1200px) {
-  .btn-ghost,
-  .btn-solid {
-    padding: .85rem 1.6rem;
-    font-size: 1.05rem;
-  }
-  .logo-round {
-    width: 96px;
-    height: 96px;
-  }
-}
-
 /* ====== Floating orbs (decor) ====== */
 .orb {
   position: absolute;
@@ -290,7 +241,7 @@
   .wave,
   .hero-title,
   .hero-subtitle,
-  .hero-cta { animation: none!important; transition: none!important; }
+  .logo-3d-cube { animation: none!important; transition: none!important; }
 }
 
 /* Contenedor flex: logo + bloque de texto */
@@ -309,23 +260,70 @@
   align-items: flex-start;
 }
 
-/* Logo redondo */
-.logo-round {
-  width: 80px;         /* ajusta el tamaño */
-  height: 80px;
-  border-radius: 50%;  /* hace el logo circular */
-  object-fit: cover;
-  background: #fff;    /* por si el svg tiene transparencia */
-  padding: 4px;        /* pequeño margen interior opcional */
-  box-shadow: 0 0 0 2px rgba(194,160,114,.55), 0 8px 24px rgba(0,0,0,.35);
+/* ====== 3D logo cube ====== */
+.logo-3d-scene {
+  --cube-size: 80px;
+  width: var(--cube-size);
+  height: var(--cube-size);
+  flex: none;
+  perspective: 600px;
+  opacity: 0;
+  transform: translateY(10px) scale(.85);
+  transition: opacity .8s ease, transform .8s ease;
+}
+.hero-header.is-loaded .logo-3d-scene {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
-/* Ajuste responsive opcional */
+.logo-3d-tilt {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transition: transform .2s ease-out;
+}
+
+.logo-3d-cube {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: cubeSpin 14s linear infinite;
+}
+@keyframes cubeSpin {
+  from { transform: rotateY(0deg) rotateX(0deg); }
+  to   { transform: rotateY(360deg) rotateX(360deg); }
+}
+
+.cube-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: calc(var(--cube-size) * 0.32);
+  color: #C2A072;
+  background: linear-gradient(145deg, #0d2733, #06141b);
+  border: 1px solid rgba(194,160,114,.45);
+  box-shadow: inset 0 0 18px rgba(194,160,114,.12);
+  backface-visibility: hidden;
+}
+.face-front  { transform: translateZ(calc(var(--cube-size) / 2)); }
+.face-back   { transform: translateZ(calc(var(--cube-size) / -2)) rotateY(180deg); }
+.face-right  { transform: rotateY(90deg)  translateZ(calc(var(--cube-size) / 2)); }
+.face-left   { transform: rotateY(-90deg) translateZ(calc(var(--cube-size) / 2)); }
+.face-top    { transform: rotateX(90deg)  translateZ(calc(var(--cube-size) / 2)); }
+.face-bottom { transform: rotateX(-90deg) translateZ(calc(var(--cube-size) / 2)); }
+
+/* Ajuste responsive */
+@media (min-width: 1200px) {
+  .logo-3d-scene { --cube-size: 96px; }
+}
 @media (max-width: 600px) {
-  .logo-round {
-    width: 60px;
-    height: 60px;
-  }
+  .logo-3d-scene { --cube-size: 60px; }
   .title-with-logo {
     gap: 0.75rem;
   }

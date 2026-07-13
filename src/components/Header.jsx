@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import "../styles/Header.css";
 
-const Header = ({ onNavigate }) => {
+const Header = () => {
   const headerRef = useRef(null);
 
   useEffect(() => {
@@ -26,16 +26,13 @@ const Header = ({ onNavigate }) => {
 
       el.style.setProperty("--parallax-x", `${dx * 10}px`);
       el.style.setProperty("--parallax-y", `${dy * 8}px`);
+      el.style.setProperty("--tilt-x", `${dy * -8}deg`);
+      el.style.setProperty("--tilt-y", `${dx * 10}deg`);
     };
 
     window.addEventListener("mousemove", onMove);
     return () => window.removeEventListener("mousemove", onMove);
   }, []);
-
-  const handleNav = (tab) => (e) => {
-    e.preventDefault();
-    if (onNavigate) onNavigate(tab);
-  };
 
   return (
     <header className="hero-header" ref={headerRef}>
@@ -46,27 +43,29 @@ const Header = ({ onNavigate }) => {
       <div className="overlay">
         <span className="hero-badge">
           <span className="badge-dot" aria-hidden="true" />
-          Disponible para nuevos proyectos
+          Available for new projects
         </span>
 
-        {/* Contenedor flex: logo + texto */}
+        {/* Contenedor flex: logo 3D + texto */}
         <div className="title-with-logo">
-          <img src="/ac.svg" alt="AC Logo" className="logo-round" />
+          <div className="logo-3d-scene" aria-hidden="true">
+            <div className="logo-3d-tilt">
+              <div className="logo-3d-cube">
+                <span className="cube-face face-front">AC</span>
+                <span className="cube-face face-back">AC</span>
+                <span className="cube-face face-right" />
+                <span className="cube-face face-left" />
+                <span className="cube-face face-top" />
+                <span className="cube-face face-bottom" />
+              </div>
+            </div>
+          </div>
           <div className="title-text">
             <h1 className="hero-title">ALEJANDRO DEVELOPER</h1>
             <p className="hero-subtitle">
               Web & Mobile Development • Creative Solutions
             </p>
           </div>
-        </div>
-
-        <div className="hero-cta">
-          <a href="#work" className="btn-solid" onClick={handleNav("work")}>
-            Ver Proyectos
-          </a>
-          <a href="#contact" className="btn-ghost" onClick={handleNav("contact")}>
-            Contactar
-          </a>
         </div>
       </div>
 

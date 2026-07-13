@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import "./App.css";
 import AboutMe from "./components/AboutMe";
 import Services from "./components/Services";
@@ -6,48 +7,52 @@ import MySkills from "./components/MySkills";
 import Work from "./views/work";
 import Contact from "./views/contact";
 import Header from "./components/Header";
-import Footer from "./components/Footer";
+
+const TABS = [
+  { key: "home", path: "/", label: "H O M E" },
+  { key: "work", path: "/work", label: "W O R K" },
+  { key: "contact", path: "/contact", label: "C O N T A C T" },
+];
+
+function Home() {
+  return (
+    <>
+      <AboutMe />
+      <Services />
+      <MySkills />
+    </>
+  );
+}
 
 function App() {
-  const [activeTab, setActiveTab] = useState("home");
   const [isMenuOpen, setIsMenuOpen] = useState(false); // 👈 móvil: hamburguesa
   const rootRef = useRef(null);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const el = rootRef.current;
     requestAnimationFrame(() => el?.classList.add("is-loaded"));
   }, []);
 
-  const renderContent = () => {
-    switch (activeTab) {
-      case "home":
-        return (
-          <>
-            <AboutMe />
-            <Services />
-            <MySkills />
-          </>
-        );
-      case "work":
-        return <Work />;
-      case "contact":
-        return <Contact />;
-      default:
-        return null;
-    }
-  };
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
+  }, [location.pathname]);
 
-  const handleNav = (tab) => {
-    setActiveTab(tab);
+  const activeTab =
+    TABS.find((t) => t.path === location.pathname)?.key ?? "home";
+
+  const handleNav = (path) => {
+    navigate(path);
     setIsMenuOpen(false); // cerrar menú móvil al elegir
   };
 
-  const navItemStyle = (tab) => ({
+  const navItemStyle = (key) => ({
     padding: "10px 20px",
     width: "100%",
     cursor: "pointer",
-    borderBottom: `4px solid ${activeTab === tab ? "#C2A072" : "#253846"}`,
-    color: activeTab === tab ? "#C2A072" : "#ffffff",
+    borderBottom: `4px solid ${activeTab === key ? "#C2A072" : "#253846"}`,
+    color: activeTab === key ? "#C2A072" : "#ffffff",
     transition: "border-bottom 0.3s, color 0.3s",
     fontWeight: "bold",
     backgroundColor: "#06141b",
@@ -56,11 +61,11 @@ function App() {
   });
 
   // Indicador activo (desktop)
-  const activeIndex = ["home", "work", "contact"].indexOf(activeTab);
+  const activeIndex = TABS.findIndex((t) => t.key === activeTab);
 
   return (
     <div ref={rootRef} className="content">
-      <Header onNavigate={handleNav} />
+      <Header />
 
       {/* NAVBAR */}
       <div
@@ -98,37 +103,39 @@ function App() {
 
         {/* Items desktop */}
         <div className="top-nav-items">
-          <div onClick={() => handleNav("home")} style={navItemStyle("home")}>
-            H O M E
-          </div>
-          <div onClick={() => handleNav("work")} style={navItemStyle("work")}>
-            W O R K
-          </div>
-          <div
-            onClick={() => handleNav("contact")}
-            style={navItemStyle("contact")}
-          >
-            C O N T A C T
-          </div>
+          {TABS.map((tab) => (
+            <div
+              key={tab.key}
+              onClick={() => handleNav(tab.path)}
+              style={navItemStyle(tab.key)}
+            >
+              {tab.label}
+            </div>
+          ))}
         </div>
       </div>
 
       {/* Menú móvil desplegable */}
       <div className={`mobile-drawer ${isMenuOpen ? "open" : ""}`}>
-        <div onClick={() => handleNav("home")} className="mobile-item">
-          H O M E
-        </div>
-        <div onClick={() => handleNav("work")} className="mobile-item">
-          W O R K
-        </div>
-        <div onClick={() => handleNav("contact")} className="mobile-item">
-          C O N T A C T
-        </div>
+        {TABS.map((tab) => (
+          <div
+            key={tab.key}
+            onClick={() => handleNav(tab.path)}
+            className="mobile-item"
+          >
+            {tab.label}
+          </div>
+        ))}
       </div>
 
       {/* CONTENIDO */}
-      <div className="lower-container fade-swap" key={activeTab}>
-        {renderContent()}
+      <div className="lower-container fade-swap" key={location.pathname}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/work" element={<Work />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
       </div>
     </div>
   );
